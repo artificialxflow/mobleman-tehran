@@ -78,15 +78,15 @@ export default function AgencyManagementWorkflowPage() {
                           <strong>مبلمان معمولی</strong>
                         </div>
                         <div className="rule-body p-2 border border-top-0 rounded-bottom">
-                          <div class="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <span>نرخ پایه:</span>
                             <strong>8%</strong>
                           </div>
-                          <div class="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <span>فروش بالای 50M:</span>
                             <strong>10%</strong>
                           </div>
-                          <div class="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <span>فروش بالای 100M:</span>
                             <strong>12%</strong>
                           </div>
@@ -98,11 +98,11 @@ export default function AgencyManagementWorkflowPage() {
                           <strong>مبلمان لوکس</strong>
                         </div>
                         <div className="rule-body p-2 border border-top-0 rounded-bottom">
-                          <div class="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <span>نرخ پایه:</span>
                             <strong>6%</strong>
                           </div>
-                          <div class="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <span>فروش بالای 30M:</span>
                             <strong>8%</strong>
                           </div>
@@ -114,11 +114,11 @@ export default function AgencyManagementWorkflowPage() {
                           <strong>پاداش عملکرد</strong>
                         </div>
                         <div className="rule-body p-2 border border-top-0 rounded-bottom">
-                          <div class="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <span>هدف ماهانه:</span>
                             <strong>+2%</strong>
                           </div>
-                          <div class="d-flex justify-content-between">
+                          <div className="d-flex justify-content-between">
                             <span>بهترین نماینده:</span>
                             <strong>5M پاداش</strong>
                           </div>
