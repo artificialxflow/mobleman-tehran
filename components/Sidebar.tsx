@@ -8,7 +8,18 @@ interface SidebarProps {
   collapsed: boolean;
 }
 
-const menuItems = [
+interface MenuItem {
+  title: string;
+  icon: string;
+  href: string;
+  badge: string | null;
+  submenu?: {
+    title: string;
+    href: string;
+  }[];
+}
+
+const menuItems: MenuItem[] = [
   {
     title: 'داشبورد',
     icon: 'bi-speedometer2',
