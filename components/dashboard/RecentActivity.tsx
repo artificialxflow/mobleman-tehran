@@ -46,8 +46,8 @@ const activities = [
 export default function RecentActivity() {
   return (
     <div className="chart-container">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h5 className="mb-0">فعالیت‌های اخیر</h5>
+      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-3">
+        <h5 className="mb-2 mb-sm-0">فعالیت‌های اخیر</h5>
         <button className="btn btn-sm btn-outline-primary">
           مشاهده همه
         </button>
@@ -57,8 +57,8 @@ export default function RecentActivity() {
         {activities.map((activity) => (
           <div key={activity.id} className="list-group-item border-0 px-0 py-2">
             <div className="d-flex align-items-start">
-              <div className={`flex-shrink-0 rounded-circle p-2 me-3 bg-${activity.color} bg-opacity-10`}>
-                <i className={`${activity.icon} text-${activity.color}`}></i>
+              <div className={`flex-shrink-0 rounded-circle p-1 p-md-2 me-2 me-md-3 bg-${activity.color} bg-opacity-10`}>
+                <i className={`${activity.icon} text-${activity.color} small`}></i>
               </div>
               <div className="flex-grow-1">
                 <p className="mb-1 small">{activity.message}</p>
