@@ -6,9 +6,10 @@ interface HeaderProps {
   onToggleSidebar: () => void;
   onToggleDarkMode: () => void;
   darkMode: boolean;
+  isMobile?: boolean;
 }
 
-export default function Header({ onToggleSidebar, onToggleDarkMode, darkMode }: HeaderProps) {
+export default function Header({ onToggleSidebar, onToggleDarkMode, darkMode, isMobile = false }: HeaderProps) {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
@@ -19,18 +20,19 @@ export default function Header({ onToggleSidebar, onToggleDarkMode, darkMode }: 
   ];
 
   return (
-    <header className="bg-white shadow-sm border-bottom p-3">
+    <header className="bg-white shadow-sm border-bottom p-2 p-md-3">
       <div className="d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
-          <button className="btn btn-outline-secondary me-3" onClick={onToggleSidebar}>
+          <button className="btn btn-outline-secondary me-2 me-md-3" onClick={onToggleSidebar}>
             <i className="bi bi-list"></i>
           </button>
-          <h4 className="mb-0 text-muted">خوش آمدید، محمد احمدی</h4>
+          <h4 className="mb-0 text-muted d-none d-md-block">خوش آمدید، محمد احمدی</h4>
+          <h6 className="mb-0 text-muted d-block d-md-none">محمد احمدی</h6>
         </div>
 
         <div className="d-flex align-items-center">
-          {/* Search */}
-          <div className="me-3">
+          {/* Search - Hidden on mobile */}
+          <div className="me-3 d-none d-lg-block">
             <div className="input-group" style={{ width: '300px' }}>
               <input 
                 type="text" 
@@ -43,6 +45,11 @@ export default function Header({ onToggleSidebar, onToggleDarkMode, darkMode }: 
               </button>
             </div>
           </div>
+
+          {/* Mobile Search Button */}
+          <button className="btn btn-outline-secondary me-2 d-block d-lg-none">
+            <i className="bi bi-search"></i>
+          </button>
 
           {/* Dark Mode Toggle */}
           <button className="btn btn-outline-secondary me-2" onClick={onToggleDarkMode}>
@@ -59,7 +66,7 @@ export default function Header({ onToggleSidebar, onToggleDarkMode, darkMode }: 
               <span className="notification-badge">3</span>
             </button>
             {showNotifications && (
-              <div className="dropdown-menu dropdown-menu-end show" style={{ width: '350px', right: '0' }}>
+              <div className="dropdown-menu dropdown-menu-end show" style={{ width: isMobile ? '280px' : '350px', right: '0' }}>
                 <div className="dropdown-header d-flex justify-content-between align-items-center">
                   <h6 className="mb-0">اعلان‌ها</h6>
                   <button className="btn btn-sm btn-link text-decoration-none">همه را خوانده علامت کن</button>
@@ -105,7 +112,7 @@ export default function Header({ onToggleSidebar, onToggleDarkMode, darkMode }: 
                 width="32"
                 height="32"
               />
-              <span>محمد احمدی</span>
+              <span className="d-none d-md-inline">محمد احمدی</span>
               <i className="bi bi-chevron-down ms-2"></i>
             </button>
             {showProfile && (
