@@ -25,19 +25,22 @@ export default function Dashboard() {
 
   return (
     <div className="fade-in">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+        <div className="mb-3 mb-md-0">
           <h2 className="mb-1">داشبورد مدیریت</h2>
-          <p className="text-muted mb-0">مرور کلی عملکرد سیستم و آمارهای مهم</p>
+          <p className="text-muted mb-0 d-none d-md-block">مرور کلی عملکرد سیستم و آمارهای مهم</p>
+          <p className="text-muted mb-0 d-block d-md-none small">آمارهای مهم</p>
         </div>
-        <div className="d-flex gap-2">
-          <button className="btn btn-outline-primary">
+        <div className="d-flex flex-column flex-sm-row gap-2 w-100 w-md-auto">
+          <button className="btn btn-outline-primary order-2 order-sm-1">
             <i className="bi bi-download me-2"></i>
-            دریافت گزارش
+            <span className="d-none d-sm-inline">دریافت گزارش</span>
+            <span className="d-inline d-sm-none">گزارش</span>
           </button>
-          <button className="btn btn-gradient-primary">
+          <button className="btn btn-gradient-primary order-1 order-sm-2">
             <i className="bi bi-plus-lg me-2"></i>
-            سفارش جدید
+            <span className="d-none d-sm-inline">سفارش جدید</span>
+            <span className="d-inline d-sm-none">سفارش</span>
           </button>
         </div>
       </div>
@@ -47,10 +50,10 @@ export default function Dashboard() {
 
       {/* Charts and Activity */}
       <div className="row mt-4">
-        <div className="col-lg-8">
+        <div className="col-12 col-lg-8">
           <ChartsSection />
         </div>
-        <div className="col-lg-4">
+        <div className="col-12 col-lg-4 mt-4 mt-lg-0">
           <div className="row">
             <div className="col-12 mb-3">
               <QuickActions />
