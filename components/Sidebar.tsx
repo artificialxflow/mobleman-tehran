@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 
 interface SidebarProps {
   collapsed: boolean;
+  isMobile?: boolean;
 }
 
 interface MenuItem {
@@ -153,7 +154,7 @@ const menuItems: MenuItem[] = [
   }
 ];
 
-export default function Sidebar({ collapsed }: SidebarProps) {
+export default function Sidebar({ collapsed, isMobile = false }: SidebarProps) {
   const pathname = usePathname();
   const [expandedMenus, setExpandedMenus] = useState<string[]>([]);
 
@@ -166,8 +167,13 @@ export default function Sidebar({ collapsed }: SidebarProps) {
   };
 
   return (
-    <div className={`sidebar position-fixed top-0 start-0 h-100 ${collapsed ? 'width-0' : ''}`} 
-         style={{ width: collapsed ? '0' : '280px', zIndex: 1000, transition: 'all 0.3s ease' }}>
+    <div className={`sidebar position-fixed top-0 start-0 h-100 ${collapsed ? 'sidebar-hidden' : ''} ${isMobile ? 'sidebar-mobile' : ''}`} 
+         style={{ 
+           width: collapsed ? '0' : '280px', 
+           zIndex: 1000, 
+           transition: 'all 0.3s ease',
+           transform: isMobile && collapsed ? 'translateX(-100%)' : 'translateX(0)'
+         }}>
       <div className="sidebar-header p-3 text-center border-bottom border-light">
         <div className="d-flex align-items-center justify-content-center">
           <i className="bi bi-building text-white fs-2 me-2"></i>
