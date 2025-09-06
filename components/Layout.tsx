@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 
@@ -11,6 +11,20 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth < 768) {
+        setSidebarCollapsed(true);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
@@ -23,17 +37,27 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className={`d-flex ${darkMode ? 'dark' : ''}`} data-bs-theme={darkMode ? 'dark' : 'light'}>
-      <Sidebar collapsed={sidebarCollapsed} />
-      <div className={`flex-fill ${sidebarCollapsed ? '' : 'me-280'} transition-all`}>
+      <Sidebar collapsed={sidebarCollapsed} isMobile={isMobile} />
+      <div className={`flex-fill transition-all ${sidebarCollapsed || isMobile ? '' : 'me-280'}`}>
         <Header 
           onToggleSidebar={toggleSidebar} 
           onToggleDarkMode={toggleDarkMode}
           darkMode={darkMode}
+          isMobile={isMobile}
         />
-        <main className="p-4">
+        <main className="p-2 p-md-4">
           {children}
         </main>
       </div>
+      
+      {/* Mobile Overlay */}
+      {isMobile && !sidebarCollapsed && (
+        <div 
+          className="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50" 
+          style={{ zIndex: 999 }}
+          onClick={() => setSidebarCollapsed(true)}
+        />
+      )}
     </div>
   );
 }
