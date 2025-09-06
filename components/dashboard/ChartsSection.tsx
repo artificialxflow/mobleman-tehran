@@ -17,9 +17,9 @@ export default function ChartsSection() {
 
   return (
     <div className="chart-container">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h5 className="mb-0">نمودارهای عملکرد</h5>
-        <div className="btn-group" role="group">
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
+        <h5 className="mb-2 mb-md-0">نمودارهای عملکرد</h5>
+        <div className="btn-group w-100 w-md-auto" role="group">
           <button 
             className={`btn ${activeTab === 'sales' ? 'btn-primary' : 'btn-outline-primary'} btn-sm`}
             onClick={() => setActiveTab('sales')}
@@ -41,22 +41,21 @@ export default function ChartsSection() {
         </div>
       </div>
 
-      <div style={{ height: '300px' }}>
+      <div style={{ height: '250px' }} className="overflow-auto">
         {activeTab === 'sales' && (
           <div className="h-100 d-flex align-items-center justify-content-center">
             <div className="text-center">
-              <div className="row">
+              <div className="row g-2">
                 {salesData.labels.map((label, index) => (
-                  <div key={index} className="col-2">
+                  <div key={index} className="col-6 col-sm-4 col-md-2">
                     <div 
                       className="bg-primary rounded mb-2 mx-auto"
                       style={{ 
-                        height: `${(salesData.values[index] / Math.max(...salesData.values)) * 200}px`,
+                        height: `${(salesData.values[index] / Math.max(...salesData.values)) * 150}px`,
                         width: '20px'
                       }}
                     ></div>
-                    <small className="text-muted">{label}</small>
-                    <br />
+                    <small className="text-muted d-block">{label}</small>
                     <small className="fw-bold">{salesData.values[index]}M</small>
                   </div>
                 ))}
@@ -68,18 +67,17 @@ export default function ChartsSection() {
         {activeTab === 'production' && (
           <div className="h-100 d-flex align-items-center justify-content-center">
             <div className="text-center">
-              <div className="row">
+              <div className="row g-2">
                 {productionData.labels.map((label, index) => (
-                  <div key={index} className="col">
+                  <div key={index} className="col-6 col-sm-4 col-md">
                     <div 
                       className="bg-warning rounded mb-2 mx-auto"
                       style={{ 
-                        height: `${(productionData.values[index] / Math.max(...productionData.values)) * 150}px`,
-                        width: '30px'
+                        height: `${(productionData.values[index] / Math.max(...productionData.values)) * 120}px`,
+                        width: '25px'
                       }}
                     ></div>
-                    <small className="text-muted">{label}</small>
-                    <br />
+                    <small className="text-muted d-block">{label}</small>
                     <small className="fw-bold">{productionData.values[index]}</small>
                   </div>
                 ))}
