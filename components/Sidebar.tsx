@@ -28,6 +28,45 @@ const menuItems: MenuItem[] = [
     badge: null
   },
   {
+    title: 'CRM',
+    icon: 'bi-people',
+    href: '/crm',
+    badge: null,
+    submenu: [
+      { title: 'سرنخ‌ها', href: '/crm/leads' },
+      { title: 'فرصت‌ها (کانبان)', href: '/crm/opportunities' },
+      { title: 'مخاطبین', href: '/crm/contacts' }
+    ]
+  },
+  {
+    title: 'ارتباط داخلی',
+    icon: 'bi-chat-dots',
+    href: '/intranet',
+    badge: null,
+    submenu: [
+      { title: 'اعلان‌ها', href: '/intranet' },
+      { title: 'گفتگوها', href: '/intranet/messages' }
+    ]
+  },
+  {
+    title: 'مالی',
+    icon: 'bi-receipt',
+    href: '/finance',
+    badge: null,
+    submenu: [
+      { title: 'فاکتورها', href: '/finance/invoices' }
+    ]
+  },
+  {
+    title: 'مارکتینگ',
+    icon: 'bi-bullseye',
+    href: '/marketing',
+    badge: null,
+    submenu: [
+      { title: 'کمپین‌ها', href: '/marketing/campaigns' }
+    ]
+  },
+  {
     title: 'مدیریت کاربران',
     icon: 'bi-people',
     href: '/users',
@@ -148,6 +187,7 @@ const menuItems: MenuItem[] = [
     badge: null,
     submenu: [
       { title: 'تنظیمات عمومی', href: '/settings/general' },
+      { title: 'نقش‌ها و دسترسی‌ها', href: '/settings/roles' },
       { title: 'پشتیبان‌گیری', href: '/settings/backup' },
       { title: 'لاگ‌های سیستم', href: '/settings/logs' }
     ]
@@ -215,7 +255,7 @@ export default function Sidebar({ collapsed, isMobile = false }: SidebarProps) {
                             {subItem.title}
                           </Link>
                         </li>
-                      ))}
+            ))}
                     </ul>
                   </div>
                 </>
