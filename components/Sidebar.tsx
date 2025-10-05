@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 interface SidebarProps {
   collapsed: boolean;
   isMobile?: boolean;
+  onNavigate?: () => void;
 }
 
 interface MenuItem {
@@ -194,7 +195,7 @@ const menuItems: MenuItem[] = [
   }
 ];
 
-export default function Sidebar({ collapsed, isMobile = false }: SidebarProps) {
+export default function Sidebar({ collapsed, isMobile = false, onNavigate }: SidebarProps) {
   const pathname = usePathname();
   const [expandedMenus, setExpandedMenus] = useState<string[]>([]);
 
@@ -250,7 +251,8 @@ export default function Sidebar({ collapsed, isMobile = false }: SidebarProps) {
                       {item.submenu.map((subItem) => (
                         <li key={subItem.href} className="nav-item">
                           <Link href={subItem.href} 
-                                className={`nav-link text-white-50 py-2 ${pathname === subItem.href ? 'active text-white' : ''}`}>
+                                className={`nav-link text-white-50 py-2 ${pathname === subItem.href ? 'active text-white' : ''}`}
+                                onClick={() => { if (isMobile && onNavigate) onNavigate(); }}>
                             <i className="bi bi-circle-fill me-2" style={{ fontSize: '6px' }}></i>
                             {subItem.title}
                           </Link>
@@ -261,7 +263,8 @@ export default function Sidebar({ collapsed, isMobile = false }: SidebarProps) {
                 </>
               ) : (
                 <Link href={item.href} 
-                      className={`nav-link text-white d-flex align-items-center ${pathname === item.href ? 'active' : ''}`}>
+                      className={`nav-link text-white d-flex align-items-center ${pathname === item.href ? 'active' : ''}`}
+                      onClick={() => { if (isMobile && onNavigate) onNavigate(); }}>
                   <i className={`${item.icon} me-2`}></i>
                   <span>{item.title}</span>
                   {item.badge && (
