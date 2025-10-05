@@ -1,11 +1,10 @@
 'use client';
 
 import React from 'react';
-import Layout from '@/components/Layout';
 
 export default function OrderManagementWorkflowPage() {
   return (
-    <Layout>
+      <>
       <div className="container-fluid">
         <div className="d-flex justify-content-between align-items-center mb-4">
           <div>
@@ -199,20 +198,20 @@ export default function OrderManagementWorkflowPage() {
               </div>
               <div className="card-body">
                 <div className="form-check form-switch mb-3">
-                  <input className="form-check-input" type="checkbox" id="autoRun" checked />
+                  <input className="form-check-input" type="checkbox" id="autoRun" defaultChecked />
                   <label className="form-check-label" htmlFor="autoRun">
                     اجرای خودکار
                   </label>
                 </div>
                 <div className="form-check form-switch mb-3">
-                  <input className="form-check-input" type="checkbox" id="errorNotif" checked />
+                  <input className="form-check-input" type="checkbox" id="errorNotif" defaultChecked />
                   <label className="form-check-label" htmlFor="errorNotif">
                     اطلاع‌رسانی خطا
                   </label>
                 </div>
                 <div className="mb-3">
                   <label className="form-label">حداکثر تلاش مجدد:</label>
-                  <input type="number" className="form-control" value="3" />
+                  <input type="number" className="form-control" defaultValue={3} />
                 </div>
                 <button className="btn btn-primary btn-sm w-100">ذخیره تنظیمات</button>
               </div>
@@ -325,6 +324,6 @@ export default function OrderManagementWorkflowPage() {
           border-bottom: none;
         }
       `}</style>
-    </Layout>
+      </>
   );
 }
