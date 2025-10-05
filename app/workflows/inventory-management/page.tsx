@@ -1,11 +1,10 @@
 'use client';
 
 import React from 'react';
-import Layout from '@/components/Layout';
 
 export default function InventoryManagementWorkflowPage() {
   return (
-    <Layout>
+      <>
       <div className="container-fluid">
         <div className="d-flex justify-content-between align-items-center mb-4">
           <div>
@@ -157,7 +156,7 @@ export default function InventoryManagementWorkflowPage() {
                   </select>
                 </div>
                 <div className="form-check mb-3">
-                  <input className="form-check-input" type="checkbox" id="weekendRun" checked />
+                  <input className="form-check-input" type="checkbox" id="weekendRun" defaultChecked />
                   <label className="form-check-label" htmlFor="weekendRun">
                     اجرا در تعطیلات
                   </label>
@@ -260,6 +259,6 @@ export default function InventoryManagementWorkflowPage() {
           background: #f8f9fa;
         }
       `}</style>
-    </Layout>
+      </>
   );
 }
