@@ -66,7 +66,7 @@ export default function Header({ onToggleSidebar, onToggleDarkMode, darkMode, is
               <span className="notification-badge">3</span>
             </button>
             {showNotifications && (
-              <div className="dropdown-menu dropdown-menu-end show" style={{ width: isMobile ? '280px' : '350px', right: '0' }}>
+              <div className="dropdown-menu show" style={{ width: isMobile ? '280px' : '350px', left: '0', right: 'auto' }}>
                 <div className="dropdown-header d-flex justify-content-between align-items-center">
                   <h6 className="mb-0">اعلان‌ها</h6>
                   <button className="btn btn-sm btn-link text-decoration-none">همه را خوانده علامت کن</button>
