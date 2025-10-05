@@ -1,11 +1,10 @@
 'use client';
 
 import React from 'react';
-import Layout from '@/components/Layout';
 
 export default function HumanResourcesWorkflowPage() {
   return (
-    <Layout>
+      <>
       <div className="container-fluid">
         <div className="d-flex justify-content-between align-items-center mb-4">
           <div>
@@ -353,6 +352,6 @@ export default function HumanResourcesWorkflowPage() {
           border: 1px solid #e9ecef;
         }
       `}</style>
-    </Layout>
+      </>
   );
 }
