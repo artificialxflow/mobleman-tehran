@@ -37,7 +37,11 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className={`d-flex ${darkMode ? 'dark' : ''}`} data-bs-theme={darkMode ? 'dark' : 'light'}>
-      <Sidebar collapsed={sidebarCollapsed} isMobile={isMobile} />
+      <Sidebar 
+        collapsed={sidebarCollapsed} 
+        isMobile={isMobile} 
+        onNavigate={() => { if (isMobile) setSidebarCollapsed(true); }}
+      />
       <div className={`flex-fill transition-all ${sidebarCollapsed || isMobile ? '' : 'me-280'}`}>
         <Header 
           onToggleSidebar={toggleSidebar} 
