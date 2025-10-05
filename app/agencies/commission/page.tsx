@@ -1,5 +1,5 @@
 'use client';
 
-export { default } from '@/mobleman-tehran/app/agencies/commission/page';
+export { default } from '@/app/agencies/commission/page';
 
 
