@@ -244,6 +244,13 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContent.classList.toggle('sidebar-collapsed');
     }
 
+    function closeSidebarMobile() {
+        if (window.innerWidth < 992) {
+            sidebar.classList.add('collapsed');
+            mainContent.classList.add('sidebar-collapsed');
+        }
+    }
+
     function toggleDarkMode() {
         darkMode = !darkMode;
         localStorage.setItem('darkMode', darkMode);
@@ -301,6 +308,21 @@ document.addEventListener('DOMContentLoaded', function() {
             mainContent.classList.add('sidebar-collapsed');
         }
     });
+
+    // Close sidebar when clicking outside on mobile
+    function handleOutsideClick(e) {
+        if (window.innerWidth >= 992) return;
+        if (sidebar.classList.contains('collapsed')) return;
+        const target = e.target;
+        const clickedInsideSidebar = sidebar.contains(target);
+        const clickedToggle = target.closest && target.closest('#toggle-sidebar');
+        if (!clickedInsideSidebar && !clickedToggle) {
+            closeSidebarMobile();
+        }
+    }
+
+    document.addEventListener('click', handleOutsideClick, true);
+    document.addEventListener('touchstart', handleOutsideClick, true);
 
     renderDashboardWidgets();
     initializeCharts();
