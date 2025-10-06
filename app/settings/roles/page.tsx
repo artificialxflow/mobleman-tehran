@@ -1,5 +1,5 @@
 'use client';
 
-export { default } from '../../../mobleman-tehran/app/settings/roles/page';
+export { default } from '../../../mobleman-tehran/app/settings/roles/page.tsx';
 
 
