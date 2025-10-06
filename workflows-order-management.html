@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورک‌فلو مدیریت سفارشات - سیستم ERP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="d-flex">
+        <div id="sidebar" class="sidebar position-fixed top-0 start-0 h-100"></div>
+        <div class="flex-fill" id="main-content">
+            <header id="header" class="bg-white shadow-sm border-bottom p-2 p-md-3"></header>
+            <main class="p-3 p-md-4">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h2 class="mb-1">ورک‌فلو مدیریت سفارشات</h2>
+                            <p class="text-muted mb-0">خودکارسازی فرآیند دریافت، بررسی و پردازش سفارشات</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary">
+                                <i class="bi bi-pencil me-2"></i>
+                                ویرایش ورک‌فلو
+                            </button>
+                            <button class="btn btn-gradient-primary">
+                                <i class="bi bi-play me-2"></i>
+                                اجرای دستی
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-diagram-3 me-2"></i>مراحل ورک‌فلو</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="workflow-steps">
+                                        <div class="step active d-flex align-items-start mb-4">
+                                            <div class="step-icon rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-3" style="width:50px;height:50px;"><i class="bi bi-webhook"></i></div>
+                                            <div class="step-content">
+                                                <h6>دریافت سفارش</h6>
+                                                <p class="mb-0">دریافت سفارش از طریق Webhook از وب‌سایت یا اپلیکیشن</p>
+                                                <small class="text-muted">Trigger: HTTP Webhook</small>
+                                            </div>
+                                        </div>
+                                        <div class="step d-flex align-items-start mb-4">
+                                            <div class="step-icon rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width:50px;height:50px;"><i class="bi bi-database"></i></div>
+                                            <div class="step-content">
+                                                <h6>بررسی موجودی</h6>
+                                                <p class="mb-0">چک کردن موجودی محصولات و مواد اولیه مورد نیاز</p>
+                                                <small class="text-muted">Action: PostgreSQL Query</small>
+                                            </div>
+                                        </div>
+                                        <div class="step d-flex align-items-start mb-4">
+                                            <div class="step-icon rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width:50px;height:50px;"><i class="bi bi-question-diamond"></i></div>
+                                            <div class="step-content">
+                                                <h6>تصمیم‌گیری</h6>
+                                                <p class="mb-0">اگر موجودی کافی است → تایید سفارش، اگر نه → اطلاع‌رسانی کمبود</p>
+                                                <small class="text-muted">Action: Conditional Logic</small>
+                                            </div>
+                                        </div>
+                                        <div class="step d-flex align-items-start mb-4">
+                                            <div class="step-icon rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width:50px;height:50px;"><i class="bi bi-envelope"></i></div>
+                                            <div class="step-content">
+                                                <h6>ارسال تایید</h6>
+                                                <p class="mb-0">ارسال ایمیل/SMS تایید سفارش به مشتری</p>
+                                                <small class="text-muted">Action: Email/SMS Send</small>
+                                            </div>
+                                        </div>
+                                        <div class="step d-flex align-items-start mb-4">
+                                            <div class="step-icon rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width:50px;height:50px;"><i class="bi bi-bell"></i></div>
+                                            <div class="step-content">
+                                                <h6>اطلاع‌رسانی تولید</h6>
+                                                <p class="mb-0">اطلاع‌رسانی به تیم تولید از طریق Slack/Teams</p>
+                                                <small class="text-muted">Action: Slack Notification</small>
+                                            </div>
+                                        </div>
+                                        <div class="step d-flex align-items-start">
+                                            <div class="step-icon rounded-circle bg-light d-flex align-items-center justify-content-center me-3" style="width:50px;height:50px;"><i class="bi bi-arrow-clockwise"></i></div>
+                                            <div class="step-content">
+                                                <h6>بروزرسانی وضعیت</h6>
+                                                <p class="mb-0">بروزرسانی وضعیت سفارش در دیتابیس</p>
+                                                <small class="text-muted">Action: Database Update</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-info-circle me-2"></i>توضیحات عملکرد</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6>هدف ورک‌فلو:</h6>
+                                    <p>این ورک‌فلو به صورت خودکار سفارشات جدید را پردازش کرده و تمام مراحل از دریافت تا تایید نهایی را مدیریت می‌کند.</p>
+                                    <h6 class="mt-4">ویژگی‌های کلیدی:</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>بررسی خودکار موجودی محصولات</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>ارسال تایید فوری به مشتری</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>اطلاع‌رسانی خودکار به تیم تولید</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>بروزرسانی وضعیت سفارش در سیستم</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>مدیریت خطاها و هشدارهای کمبود موجودی</li>
+                                    </ul>
+                                    <h6 class="mt-4">مزایای استفاده:</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-2"><strong>سرعت:</strong> پردازش فوری سفارشات</div>
+                                            <div class="mb-2"><strong>دقت:</strong> کاهش خطاهای انسانی</div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-2"><strong>شفافیت:</strong> پیگیری کامل فرآیند</div>
+                                            <div class="mb-2"><strong>کارایی:</strong> کاهش زمان پاسخ‌دهی</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h5 class="mb-0"><i class="bi bi-info-circle me-2"></i>اطلاعات ورک‌فلو</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3"><label class="form-label fw-bold">وضعیت:</label> <span class="badge bg-success ms-2">فعال</span></div>
+                                    <div class="mb-3"><label class="form-label fw-bold">آخرین اجرا:</label> <span>2 ساعت پیش</span></div>
+                                    <div class="mb-3"><label class="form-label fw-bold">تعداد اجرا امروز:</label> <span>23 بار</span></div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">نرخ موفقیت:</label>
+                                        <div class="progress mb-1"><div class="progress-bar bg-success" style="width:96%"></div></div>
+                                        <small class="text-muted">96% (22 از 23)</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header"><h5 class="mb-0"><i class="bi bi-clock-history me-2"></i>تاریخچه اجرا</h5></div>
+                                <div class="card-body">
+                                    <div class="execution-item d-flex align-items-center mb-2"><i class="bi bi-check-circle text-success me-2"></i><div><small class="fw-bold">سفارش #1234</small><br/><small class="text-muted">2 ساعت پیش</small></div></div>
+                                    <div class="execution-item d-flex align-items-center mb-2"><i class="bi bi-check-circle text-success me-2"></i><div><small class="fw-bold">سفارش #1233</small><br/><small class="text-muted">3 ساعت پیش</small></div></div>
+                                    <div class="execution-item d-flex align-items-center"><i class="bi bi-x-circle text-danger me-2"></i><div><small class="fw-bold">سفارش #1232</small><br/><small class="text-muted">5 ساعت پیش</small></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
