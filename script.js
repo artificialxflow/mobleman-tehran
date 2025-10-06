@@ -277,6 +277,31 @@ document.addEventListener('DOMContentLoaded', function() {
     applyDarkMode();
     renderSidebar();
     renderHeader();
+
+    // Collapse sidebar by default on small screens and keep expanded on desktop
+    function applyResponsiveSidebar() {
+        const isMobile = window.innerWidth < 992; // match Bootstrap lg breakpoint
+        if (isMobile) {
+            if (!sidebar.classList.contains('collapsed')) sidebar.classList.add('collapsed');
+            if (!mainContent.classList.contains('sidebar-collapsed')) mainContent.classList.add('sidebar-collapsed');
+        } else {
+            sidebar.classList.remove('collapsed');
+            mainContent.classList.remove('sidebar-collapsed');
+        }
+    }
+
+    applyResponsiveSidebar();
+    window.addEventListener('resize', applyResponsiveSidebar);
+
+    // Auto-close sidebar after navigation on mobile
+    sidebar.addEventListener('click', (e) => {
+        const target = e.target;
+        if (window.innerWidth < 992 && target.closest('a.nav-link')) {
+            sidebar.classList.add('collapsed');
+            mainContent.classList.add('sidebar-collapsed');
+        }
+    });
+
     renderDashboardWidgets();
     initializeCharts();
 
