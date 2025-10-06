@@ -1,5 +1,5 @@
 'use client';
 
-export { default } from '../../../mobleman-tehran/app/orders/processing/page.tsx';
+export { default } from '../../../mobleman-tehran/app/orders/processing/page';
 
 
