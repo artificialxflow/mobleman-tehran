@@ -1,5 +1,5 @@
 'use client';
 
-export { default } from '../../../../mobleman-tehran/app/crm/contacts/[id]/page.tsx';
+export { default } from '../../../../mobleman-tehran/app/crm/contacts/[id]/page';
 
 
